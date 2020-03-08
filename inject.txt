@@ -1,4 +1,4 @@
-REM Title: Invoke mimikatz and save passwords to the rubber ducky SD. You can download the files we need and the instructions for have it ready for the attack: **NECESARY TWIN DUCK**
+REM Title: Invoke mimikatz and save passwords to the rubber ducky SD. You must download the files we need for have it ready for the attack: **NECESARY TWIN DUCK**
 REM Author: Hak5Darren Props: Mubix, Clymb3r, Gentilkiwi. MODIFIED BY 4LON3LY
 REM 
 REM The next two lines are because a twin duck rubber ducky is detected by the computer, and normally it open the explorer in the USB, for not have that problem when all is beeing executed, we wait until it is opened and we close it. 
